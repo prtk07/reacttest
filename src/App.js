@@ -13,7 +13,6 @@ export class App extends Component {
       user: "",
       pass: "",
     }
-    this.fetchObject = this.fetchObject.bind(this);
     this.Login = this.Login.bind(this);
   }
 
