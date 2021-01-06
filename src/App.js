@@ -17,13 +17,6 @@ export class App extends Component {
     this.Login = this.Login.bind(this);
   }
 
-  fetchObject() {
-    fetch("http://localhost:8080").then((res) => res.json()).then((data) => {
-      console.log(data.age)
-      this.setState({ obj: data.age })
-    }).catch((e) => { console.log(e) })
-  }
-
   Login() {
     // let [username, password] = [this.state.user, this.state.pass];
     // let api = "https://morning-start-0901.herokuapp.com/login";
