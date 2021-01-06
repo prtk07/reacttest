@@ -23,11 +23,20 @@ export class App extends Component {
       this.setState({ obj: data.age })
     }).catch((e) => { console.log(e) })
   }
-  Login() {
-    let api = "https://morning-start-0901.herokuapp.com/login";
-    let [username, password] = [this.state.user, this.state.pass];
 
-    fetch(api, { method: "POST", body: JSON.stringify({ user: username, pass: password }) }).then((res) => res.json()).then((data) => { console.log(data); });
+  Login() {
+    // let [username, password] = [this.state.user, this.state.pass];
+    // let api = "https://morning-start-0901.herokuapp.com/login";
+    let api2 = "http://localhost:8080/";
+    fetch(api2 + "login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: this.state.user, pass: this.state.pass })
+      }).then((res) => res.json())
+      .then((data) => { console.log(data); });
   }
 
   render() {
