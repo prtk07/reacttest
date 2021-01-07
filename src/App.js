@@ -9,38 +9,45 @@ export class App extends Component {
     super();
 
     this.state = {
-      obj: 1,
+      randomObj: 1,
       user: "",
       pass: "",
     }
     this.Login = this.Login.bind(this);
+    this.Signup = this.Signup.bind(this);
   }
 
   Login() {
-    // let [username, password] = [this.state.user, this.state.pass];
-    // let api = "https://morning-start-0901.herokuapp.com/login";
+
     let api2 = "http://localhost:8080/";
-    fetch(api2 + "login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: this.state.user, pass: this.state.pass })
-      }).then((res) => res.json())
+    fetch(api2).then((res) => res.json())
       .then((data) => { console.log(data); });
+  }
+
+  Signup() {
+    let api2 = "http://localhost:8080/signup";
+    fetch(api2, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({ user: this.state.user, passsword: this.state.pass })
+    }).then((res) => res.json())
+      .then((data) => this.setState({ randomObj: [...data] }));
+
   }
 
   render() {
     return (
       <div>
 
-        <div>{this.state.obj}</div>
+        <div>{this.state.randomObj}</div>
         <input type="text" onChange={(e) => { this.setState({ user: e.target.value }) }} />
         <input type="text" onChange={(e) => { this.setState({ pass: e.target.value }) }} />
 
 
         <button onClick={this.Login}>click</button>
+        <button onClick={this.Signup}>post</button>
       </div >
 
     )
